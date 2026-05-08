@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nathan (Peiqi) Jing | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f5f5f5;
+      --panel: #ececee;
+      --text: #141414;
+      --muted: #6c6c72;
+      --line: #d8d8dd;
+      --accent: #2563eb;
+      --white: #ffffff;
+      --shadow: 0 18px 45px rgba(0,0,0,0.12);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, #fafafa 0%, #f2f2f4 100%);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 330px 1fr;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      background: #eff0f3;
+      border-right: 1px solid var(--line);
+      padding: 42px 34px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .profile {
+      text-align: center;
+    }
+
+    .profile img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 6px solid var(--white);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+    }
+
+    .profile h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      line-height: 1.1;
+      margin: 22px 0 10px;
+    }
+
+    .tagline {
+      margin: 0;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .location {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .nav {
+      margin-top: 34px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.98rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      color: var(--accent);
+    }
+
+    .nav a:hover::after,
+    .nav a.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 100%;
+      height: 2px;
+      background: var(--accent);
+    }
+
+    .sidebar-footer {
+      font-size: 0.9rem;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.8;
+    }
+
+    .sidebar-footer a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .content {
+      padding: 0;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      background: #f8f8f8;
+    }
+
+    .hero-copy {
+      padding: 64px 72px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 18px;
+      color: var(--accent);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero-copy h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 6vw, 5.4rem);
+      line-height: 0.98;
+      margin: 0 0 24px;
+    }
+
+    .hero-copy p {
+      max-width: 640px;
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: #3f3f46;
+      margin-bottom: 34px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 24px;
+      border: 1.5px solid var(--text);
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      transition: all 0.2s ease;
+      background: transparent;
+    }
+
+    .btn:hover {
+      background: var(--text);
+      color: var(--white);
+      transform: translateY(-1px);
+    }
+
+    .btn.primary {
+      background: var(--text);
+      color: var(--white);
+    }
+
+    .btn.primary:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .hero-image {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 55% 35%, rgba(255,255,255,0.55), rgba(238,238,240,0.45)),
+        url('2.jpg') center 18% / cover no-repeat;
+      filter: grayscale(8%);
+      position: relative;
+    }
+
+    .section {
+      padding: 82px 72px;
+      border-top: 1px solid var(--line);
+      background: #fbfbfc;
+    }
+
+    .section:nth-of-type(even) {
+      background: #f5f6f8;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      margin: 0 0 18px;
+    }
+
+    .section-intro {
+      max-width: 780px;
+      color: #4b5563;
+      line-height: 1.9;
+      margin-bottom: 24px;
+      font-size: 1.02rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid #e3e5ea;
+      border-radius: 18px;
+      padding: 26px;
+      box-shadow: 0 10px 26px rgba(23, 23, 23, 0.04);
+    }
+
+    .card h3 {
+      margin: 0 0 14px;
+      font-size: 1.1rem;
+    }
+
+    .card ul {
+      padding-left: 18px;
+      margin: 0;
+      color: #4b5563;
+      line-height: 1.9;
+    }
+
+    .skill-note {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 22px;
+    }
+
+    .timeline-item {
+      background: var(--white);
+      border: 1px solid #e3e5ea;
+      border-radius: 18px;
+      padding: 26px;
+      box-shadow: 0 10px 26px rgba(23, 23, 23, 0.04);
+    }
+
+    .timeline-item .meta {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .timeline-item h3 {
+      margin: 0 0 12px;
+      font-size: 1.18rem;
+    }
+
+    .timeline-item ul {
+      margin: 0;
+      padding-left: 18px;
+      color: #4b5563;
+      line-height: 1.85;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .project-grid-wide {
+      grid-template-columns: 1fr;
+    }
+
+    .project {
+      background: var(--white);
+      border: 1px solid #e3e5ea;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 14px 34px rgba(0,0,0,0.06);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-horizontal {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: stretch;
+      width: 100%;
+    }
+
+    .project-image-wrap {
+      background: #f8f9fb;
+      border-right: 1px solid #edf0f3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+
+    .project-image {
+      width: 100%;
+      max-width: 760px;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+    }
+
+    .project-content {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .project-text-only {
+      grid-template-columns: 1fr;
+    }
+
+    .project-text-only .project-content {
+      width: 100%;
+    }
+
+    .project-top {
+      padding: 28px 28px 18px;
+      border-bottom: 1px solid #edf0f3;
+    }
+
+    .project-top span {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .project-top h3 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    .project-meta {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.93rem;
+      line-height: 1.6;
+    }
+
+    .project-body {
+      padding: 22px 28px 30px;
+      color: #4b5563;
+      line-height: 1.85;
+      flex: 1;
+    }
+
+    .project-body ul {
+      padding-left: 18px;
+      margin: 0 0 18px;
+    }
+
+    .project-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .pill {
+      display: inline-flex;
+      padding: 7px 12px;
+      background: #eef3ff;
+      color: #2448a8;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .contact-box {
+      background: linear-gradient(135deg, #171717 0%, #22252d 100%);
+      color: var(--white);
+      border-radius: 26px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-box h3 {
+      margin: 0 0 12px;
+      font-size: 1.5rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .contact-box p {
+      color: rgba(255,255,255,0.8);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .contact-list a,
+    .contact-list div {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    @media (max-width: 1100px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-image {
+        min-height: 65vh;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .project-horizontal {
+        grid-template-columns: 1fr;
+      }
+
+      .project-image-wrap {
+        border-right: none;
+        border-bottom: 1px solid #edf0f3;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .hero-copy,
+      .section {
+        padding: 48px 24px;
+      }
+
+      .grid-2,
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .profile h1 {
+        font-size: 1.7rem;
+      }
+
+      .hero-copy h2 {
+        font-size: 3rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div>
+        <div class="profile">
+          <img src="Profile Photo.jpg" alt="Nathan (Peiqi) Jing portrait">
+          <h1>Nathan Jing</h1>
+          <p class="tagline">Supply Chain, Logistics &amp; Data Analytics</p>
+          <p class="location">Auckland, New Zealand</p>
+        </div>
+
+        <nav class="nav">
+          <a href="#home" class="active">Home</a>
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#education">Education</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+
+      <div class="sidebar-footer">
+        <div>Open-Study Work Visa</div>
+        <div><a href="mailto:jingpeiqi0913@gmail.com">jingpeiqi0913@gmail.com</a></div>
+        <div><a href="tel:+642040312713">+64 20 4031 2713</a></div>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section class="hero" id="home">
+        <div class="hero-copy">
+          <span class="eyebrow">Portfolio</span>
+          <h2>I turn supply chain data into clear decisions.</h2>
+          <p>
+            Nathan (Peiqi) Jing is a Business Analytics graduate from the University of Auckland with hands-on experience across supply chain, logistics, procurement, and operational analytics. He works at the intersection of data, systems, and business operations, using analytics to improve visibility, reporting accuracy, and operational decision-making.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#projects">View Projects</a>
+            <a class="btn" href="#contact">Contact Me</a>
+          </div>
+        </div>
+        <div class="hero-image" aria-hidden="true"></div>
+      </section>
+
+      <section class="section" id="about">
+        <h2 class="section-title">About Me</h2>
+        <p class="section-intro">
+          I am currently seeking roles in supply chain, logistics, operations, and data analytics. My background combines hands-on technical work with business understanding, and I enjoy turning operational data into clearer reporting, better process visibility, and more practical decisions.
+        </p>
+        <p class="section-intro">
+          I have built Power BI dashboards, analysed logistics and 3PL costs, validated operational datasets, and supported procurement and supply chain decisions using Excel, SQL, Python, and R. My experience spans transport analysis, inventory planning, supplier performance reporting, workflow documentation, and process improvement across construction and healthcare environments.
+        </p>
+      </section>
+
+      <section class="section" id="skills">
+        <h2 class="section-title">Skills</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Technical Skills</h3>
+            <ul>
+              <li>Advanced Excel</li>
+              <li>Power BI</li>
+              <li>SQL</li>
+              <li>Python</li>
+              <li>R</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Analytics Focus</h3>
+            <ul>
+              <li>Logistics analytics</li>
+              <li>Freight cost analysis</li>
+              <li>3PL cost analysis</li>
+              <li>Procurement analytics</li>
+              <li>Supply chain reporting</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Reporting &amp; Process</h3>
+            <ul>
+              <li>Data validation</li>
+              <li>Workflow documentation</li>
+              <li>Dashboard development</li>
+              <li>KPI reporting</li>
+              <li>Process improvement</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Soft Skills</h3>
+            <ul>
+              <li>Cross-functional stakeholder collaboration</li>
+              <li>Communication with technical and non-technical teams</li>
+              <li>Problem solving and attention to detail</li>
+              <li>Commercial awareness</li>
+              <li>Time management and adaptability</li>
+            </ul>
+            <div class="skill-note">Certificate: Google Data Analytics Professional</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="experience">
+        <h2 class="section-title">Experience</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="meta">JianYuan Construction Group · Dezhou, China · Hybrid · Aug 2025 – Feb 2026</div>
+            <h3>Data &amp; Operation Analyst</h3>
+            <ul>
+              <li>Analysed 3PL transportation costs, freight trends, and logistics inefficiencies in Excel, identifying opportunities that contributed to an <strong>8% reduction in fuel costs</strong>.</li>
+              <li>Built and maintained Power BI dashboards to improve visibility across logistics KPIs, freight performance, and delivery timelines.</li>
+              <li>Evaluated 3PL delivery performance and shipping delays to support logistics planning and issue follow-up.</li>
+              <li>Supported data validation, reporting accuracy, and documentation of reporting logic to improve reliability across operational teams.</li>
+              <li>Worked cross-functionally with logistics and operations teams to improve routing efficiency, transportation planning, and resource allocation.</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <div class="meta">Fisher &amp; Paykel Healthcare · Auckland, New Zealand · Hybrid · Mar 2025 – Jun 2025</div>
+            <h3>Supply Chain Analyst Intern</h3>
+            <ul>
+              <li>Supported end-to-end supply chain operations by processing, cleaning, and validating large datasets in Excel and Python for modelling and reporting.</li>
+              <li>Built a Python simulation model to evaluate different freight routes across sea, air, and hub options, comparing cost, lead time, and service levels.</li>
+              <li>Used model outputs to recommend freight strategies that reduced costs by <strong>16%</strong> while maintaining a <strong>97%+ service level</strong>.</li>
+              <li>Coordinated cross-functional information and prepared performance reports to support timely decision-making and issue resolution.</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <div class="meta">Jinglin Construction Group · Dezhou, China · Hybrid · Feb 2024 – Aug 2024</div>
+            <h3>Junior Procurement Analyst</h3>
+            <ul>
+              <li>Built Excel and Power BI dashboards to track supplier performance, procurement KPIs, logistics costs, and material usage trends.</li>
+              <li>Supported supplier pricing analysis, procurement reporting, and purchasing decisions through structured cost analysis.</li>
+              <li>Maintained procurement documentation including supplier records, contract information, purchase tracking, and delivery documentation to improve process consistency.</li>
+              <li>Coordinated with logistics teams to track shipments, delivery delays, and supplier performance issues.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="projects">
+        <h2 class="section-title">Projects</h2>
+
+        <div class="project-grid project-grid-wide">
+          <article class="project project-horizontal project-text-only">
+            <div class="project-content">
+              <div class="project-top">
+                <span>Project 01</span>
+                <h3>Supply Chain Optimization with Uncertain Demand: Auckland Museum Event</h3>
+                <div class="project-meta">University of Auckland · Auckland, New Zealand · Jan 2025 – Mar 2025</div>
+              </div>
+              <div class="project-body">
+                <ul>
+                  <li>Built supplier-selection and pricing-analysis models using procurement and operational datasets to evaluate supplier performance, cost structures, and pricing consistency.</li>
+                  <li>Developed demand and inventory-planning models using forecasting assumptions and safety-stock logic to determine the <strong>EOQ</strong> and support operational decision-making across multiple scenarios.</li>
+                  <li>Conducted <strong>10 scenario simulations</strong> to analyse pricing, inventory, and profitability outcomes, identifying an average expected profit of approximately <strong>NZ$2.06 million</strong>.</li>
+                  <li>Identified data gaps and operational risks, and recommended process improvements and a dual-supplier strategy to improve efficiency and supply resilience.</li>
+                </ul>
+                <div class="project-tools">
+                  <span class="pill">Inventory Planning</span>
+                  <span class="pill">Scenario Simulation</span>
+                  <span class="pill">Pricing Analysis</span>
+                  <span class="pill">Procurement Analytics</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project project-horizontal">
+            <div class="project-image-wrap">
+              <img src="fraud-project-poster.png" alt="Fraud detection analytics project poster" class="project-image">
+            </div>
+
+            <div class="project-content">
+              <div class="project-top">
+                <span>Project 02</span>
+                <h3>Fraud Detection Project</h3>
+                <div class="project-meta">University of Auckland · Auckland, New Zealand · Aug 2024</div>
+              </div>
+              <div class="project-body">
+                <ul>
+                  <li>Analysed <strong>500,000+ transaction records</strong> to identify outlier and high-risk patterns in a large dataset.</li>
+                  <li>Developed and evaluated predictive models in R to support fraud detection and risk identification.</li>
+                  <li>Built Power BI dashboards to deliver useful insights to stakeholders and support decision-making.</li>
+                  <li>Strengthened skills in data validation, analytical reporting, and translating large datasets into actionable business recommendations.</li>
+                </ul>
+                <div class="project-tools">
+                  <span class="pill">R</span>
+                  <span class="pill">Power BI</span>
+                  <span class="pill">Machine Learning</span>
+                  <span class="pill">Data Validation</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project project-horizontal project-text-only">
+            <div class="project-content">
+              <div class="project-top">
+                <span>Project 03</span>
+                <h3>FMCG Product &amp; Sustainability Analysis: Coca-Cola</h3>
+                <div class="project-meta">University of Auckland · Auckland, New Zealand · Sep 2023</div>
+              </div>
+              <div class="project-body">
+                <ul>
+                  <li>Analysed Coca-Cola as a high-volume FMCG business, including product categories, customer behaviour, and industry trends.</li>
+                  <li>Assessed product life cycle stages across sourcing, production, distribution, and packaging operations.</li>
+                  <li>Reviewed FMCG supply chain factors including product data consistency, quality standards, packaging, and sustainability risks.</li>
+                  <li>Developed recommendations to improve packaging efficiency, sustainability practices, and operational effectiveness.</li>
+                </ul>
+                <div class="project-tools">
+                  <span class="pill">FMCG Analysis</span>
+                  <span class="pill">Sustainability</span>
+                  <span class="pill">Product Lifecycle</span>
+                  <span class="pill">Operations Analysis</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="education">
+        <h2 class="section-title">Education</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="meta">University of Auckland · Auckland, New Zealand · Apr 2024 – Sep 2025</div>
+            <h3>Master of Business Analytics (Supply Chain Management)</h3>
+            <ul>
+              <li>Relevant tools and coursework: SQL, Python, R, Power BI, Advanced Excel, Predictive Analytics, and Data Visualisation.</li>
+            </ul>
+          </div>
+          <div class="timeline-item">
+            <div class="meta">University of Auckland · Auckland, New Zealand · Feb 2021 – Nov 2023</div>
+            <h3>Bachelor of Commerce (Marketing &amp; Management)</h3>
+            <ul>
+              <li>Built a foundation in business strategy, marketing, management, and analytical decision-making.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="contact">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-box">
+          <h3>Let’s connect.</h3>
+          <p>
+            I am open to opportunities in supply chain, logistics, operations, and data analytics across Auckland and New Zealand.
+          </p>
+          <div class="contact-list">
+            <div>📍 Auckland, New Zealand</div>
+            <div>🛂 Open-Study Work Visa</div>
+            <a href="mailto:jingpeiqi0913@gmail.com">📧 jingpeiqi0913@gmail.com</a>
+            <a href="tel:+642040312713">📞 +64 20 4031 2713</a>
+            <a href="https://www.linkedin.com/in/nathan-jing-08029b253/" target="_blank" rel="noreferrer">🔗 LinkedIn Profile</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
